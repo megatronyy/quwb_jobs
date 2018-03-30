@@ -1,10 +1,9 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  "sqlserver": {
+    "server": "192.168.3.54",
+    "port": "1433",
+    "database": "AutoCallCenter",
+    "user id": "sa",
+    "password": "!QAZxsw2"
+  }
 }
