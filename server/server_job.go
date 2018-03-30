@@ -25,7 +25,7 @@ func main() {
 	spec := "*/5 * * * * ?"
 	c.AddFunc(spec, func() {
 		fmt.Println("===========================分配任务开始===========================")
-		if i==5{
+		if i == 5 {
 			isStop <- true
 		}
 		i++
