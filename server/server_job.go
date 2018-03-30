@@ -27,8 +27,8 @@ func main() {
 		fmt.Println("===========================循环开始===========================")
 		t := task.NewAllocShop(db)
 		for{
-			time.Sleep(5 * time.Minute)
 			t.Exec()
+			time.Sleep(5 * time.Minute)
 		}
 		fmt.Println("===========================循环结束===========================")
 	}else{
