@@ -7,6 +7,8 @@ import (
 	"time"
 	"quwb_jobs/server/task"
 	"fmt"
+
+	_ "github.com/denisenkom/go-mssqldb"
 )
 
 func main() {
