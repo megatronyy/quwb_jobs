@@ -11,11 +11,11 @@ import (
 
 var (
 	debug    = flag.Bool("debug", true, "enable debuging")
-	server   = flag.String("server", "192.168.3.54", "the database server")
+	server   = flag.String("server", "127.0.0.1", "the database server")
 	port     = flag.Int("port", 1433, "the database port")
 	user     = flag.String("user", "sa", "the database user")
-	password = flag.String("password", "!QAZxsw2", "the database password")
-	database = flag.String("database", "AutoCallCenter", "the database name")
+	password = flag.String("password", "qu90()op", "the database password")
+	database = flag.String("database", "ShopHouse", "the database name")
 )
 
 //获取sql.DB对象

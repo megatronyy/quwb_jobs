@@ -14,10 +14,10 @@ func main() {
 	defer db.Close()
 
 	//创建任务实例
-	shopTask := task.NewAllocShop(db)
+	shop := task.NewAllocShop(db)
 
 	//任务开启
-	go shopTask.Start()
+	go shop.Start()
 
 	select {}
 }
