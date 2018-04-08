@@ -10,8 +10,7 @@ type AllocShop struct {
 	db *sql.DB
 }
 
-func (a *AllocShop) Start() error {
-	i := 0
+func (a *AllocShop) Start() {
 	c := cron.New()
 	spec := "*/5 * * * * ?"
 	c.AddFunc(spec, func() {

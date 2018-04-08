@@ -11,6 +11,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Open connection failed:", err.Error())
 	}
+	defer db.Close()
+
 	//创建任务实例
 	shopTask := task.NewAllocShop(db)
 

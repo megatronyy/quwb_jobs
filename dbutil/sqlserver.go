@@ -3,7 +3,7 @@ package dbutil
 import (
 	"database/sql"
 	_ "github.com/denisenkom/go-mssqldb"
-	_ "github.com/odbc/driver"
+	_ "odbc/driver"
 	"flag"
 	"fmt"
 	"log"
@@ -14,8 +14,8 @@ var (
 	server   = flag.String("server", "192.168.3.54", "the database server")
 	port     = flag.Int("port", 1433, "the database port")
 	user     = flag.String("user", "sa", "the database user")
-	password = flag.String("password", "1qazXSW@", "the database password")
-	database = flag.String("database", "", "the database name")
+	password = flag.String("password", "!QAZxsw2", "the database password")
+	database = flag.String("database", "AutoCallCenter", "the database name")
 )
 
 //获取sql.DB对象
