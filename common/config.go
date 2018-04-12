@@ -14,17 +14,17 @@ type Conf struct {
 func ReadConf(path string) (Conf, error) {
 	var c Conf
 
-	if fi, err := os.Open(path); err == nil{
+	if fi, err := os.Open(path); err == nil {
 		defer fi.Close()
 
 		//读取配置文件
-		if fd, err := ioutil.ReadAll(fi); err == nil{
+		if fd, err := ioutil.ReadAll(fi); err == nil {
 			err = json.Unmarshal(fd, &c)
 			return c, err
-		}else{
+		} else {
 			return c, err
 		}
-	}else{
+	} else {
 		return c, err
 	}
 }

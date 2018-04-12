@@ -36,7 +36,7 @@ func TestGetDB(t *testing.T) {
 	}
 	fmt.Println()
 
-	for rows.Next(){
+	for rows.Next() {
 		rows.Scan(colsdata...)
 	}
 
