@@ -1,10 +1,11 @@
-package task
+package shopalloc
 
 import (
 	"database/sql"
 	"github.com/robfig/cron"
 	"log"
 	"fmt"
+	"strconv"
 )
 
 type AllocShop struct {
@@ -44,7 +45,7 @@ func (a *AllocShop) queryCustom() {
 
 //循环订阅信息
 func (a *AllocShop) handleCustom(r *sql.Rows) {
-	var id, userid, businessid, locationid, minarea, maxarea, minprice, maxprice int32
+	var id, userid, businessid, locationid, minarea, maxarea, minprice, maxprice int
 
 	for r.Next() {
 		r.Scan(&id, &userid, &businessid, &locationid, &minprice, &maxprice, &minarea, &maxarea)
@@ -80,7 +81,7 @@ func (a *AllocShop) customProcesser(c *Customization) (bool, error) {
 	defer rows.Close()
 
 	var (
-		shopId    int32
+		shopId    int
 		shopTitle string
 	)
 	for rows.Next() {
@@ -100,28 +101,28 @@ func (a *AllocShop) customProcesser(c *Customization) (bool, error) {
 
 func getCustomSQL(c *Customization) string {
 	strSql := "SELECT  t1.ShopID,t1.ShopTilte" +
-		"FROM    dbo.ShopInfo t1 ( NOLOCK )" +
-		"LEFT JOIN dbo.UserShopRela t2 ( NOLOCK ) ON t2.ShopID = t1.ShopID" +
-		"AND t2.UserID = " + string(c.UserID) +
-		"AND t2.IsActive = 1" +
-		"WHERE   t1.LocationID = " + string(c.LocationID) +
-		"AND t1.ShopPrice BETWEEN " + string(c.MinPrice) + " AND " + string(c.MaxPrice) +
-		"AND t1.ShopArea BETWEEN " + string(c.MinArea) + " AND " + string(c.MaxArea) +
-		"AND t1.BusinessID = " + string(c.BusinessID) +
-		"AND t2.RelaID IS NULL; "
+		" FROM    dbo.ShopInfo t1 ( NOLOCK )" +
+		" LEFT JOIN dbo.UserShopRela t2 ( NOLOCK ) ON t2.ShopID = t1.ShopID" +
+		" AND t2.UserID = " + strconv.Itoa(c.UserID) +
+		" AND t2.IsActive = 1" +
+		" WHERE   t1.LocationID = " + strconv.Itoa(c.LocationID) +
+		" AND t1.ShopPrice BETWEEN " + strconv.Itoa(c.MinPrice) + " AND " + strconv.Itoa(c.MaxPrice) +
+		" AND t1.ShopArea BETWEEN " + strconv.Itoa(c.MinArea) + " AND " + strconv.Itoa(c.MaxArea) +
+		" AND t1.BusinessID = " + strconv.Itoa(c.BusinessID) +
+		" AND t2.RelaID IS NULL; "
 	return strSql
 }
 
-func getAddShopRelaSQL(userId, shopId int32) string {
+func getAddShopRelaSQL(userId, shopId int) string {
 	strSql := "INSERT INTO dbo.UserShopRela(UserID,ShopID,CreateTime,IsActive)" +
-		"VALUES(" + string(userId) + " ," + string(shopId) + " , GETDATE() ,1 )"
+		" VALUES(" + strconv.Itoa(userId) + " ," + strconv.Itoa(shopId) + " , GETDATE() ,1 )"
 
 	return strSql
 }
 
-func getAnnounceSQL(userId int32, context string) string {
+func getAnnounceSQL(userId int, context string) string {
 	strSql := "INSERT INTO dbo.Announce(UserID,Context)" +
-		"VALUES(" + string(userId) + " ," + context + " )"
+		" VALUES(" + strconv.Itoa(userId) + " ," + context + " )"
 
 	return strSql
 }

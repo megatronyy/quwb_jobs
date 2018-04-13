@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"quwb_jobs/dbutil"
-	"quwb_jobs/task"
+	"quwb_jobs/task/shopalloc"
 )
 
 func main() {
@@ -14,10 +14,10 @@ func main() {
 	defer db.Close()
 
 	//创建任务实例
-	shop := task.NewAllocShop(db)
+	task1 := shopalloc.NewAllocShop(db)
 
 	//任务开启
-	go shop.Start()
+	go task1.Start()
 
 	select {}
 }
