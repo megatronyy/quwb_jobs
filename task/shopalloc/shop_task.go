@@ -54,7 +54,7 @@ func (a *AllocShop) handleCustom(r *sql.Rows) {
 		r.Scan(&id, &userid, &businessid, &locationid, &minprice, &maxprice, &minarea, &maxarea)
 
 		if id > 0 {
-			fmt.Printf("用户订阅参数：id:%s\t\nuserid:%s\t\nbusinessid:%s\t\n", id, userid, businessid)
+			fmt.Printf("用户订阅参数：\t\n id:%s\t\nuserid:%s\t\nbusinessid:%s\t\n", id, userid, businessid)
 
 			_, err := a.customProcesser(&Customization{
 				ID:         id,
