@@ -28,7 +28,9 @@ func (a *AllocShop) Start() {
 }
 
 func (a *AllocShop) exec() {
+	fmt.Println("任务开始：商机分配")
 	a.queryCustom()
+	fmt.Println("任务结束：商机分配")
 }
 
 func (a *AllocShop) queryCustom() {
@@ -51,7 +53,7 @@ func (a *AllocShop) handleCustom(r *sql.Rows) {
 		r.Scan(&id, &userid, &businessid, &locationid, &minprice, &maxprice, &minarea, &maxarea)
 
 		if id > 0 {
-			fmt.Printf("id:%s\t\nuserid:%s\t\nbusinessid:%s\t\n", id, userid, businessid)
+			fmt.Printf("用户订阅参数：id:%s\t\nuserid:%s\t\nbusinessid:%s\t\n", id, userid, businessid)
 
 			_, err := a.customProcesser(&Customization{
 				ID:         id,
@@ -122,7 +124,7 @@ func getAddShopRelaSQL(userId, shopId int) string {
 
 func getAnnounceSQL(userId int, context string) string {
 	strSql := "INSERT INTO dbo.Announce(UserID,Context)" +
-		" VALUES(" + strconv.Itoa(userId) + " ," + context + " )"
+		" VALUES(" + strconv.Itoa(userId) + " ,'" + context + "' )"
 
 	return strSql
 }
