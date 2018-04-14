@@ -19,6 +19,7 @@ func NewAllocShop(db *sql.DB) *AllocShop {
 }
 
 func (a *AllocShop) Start() {
+	fmt.Println("作业开始：商机分配")
 	c := cron.New()
 	spec := "0 */5 * * * ?"
 	c.AddFunc(spec, func() {
